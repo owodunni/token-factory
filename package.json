@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "npm run dev --workspace=@token-factory/app",
+    "build": "npm run build --workspace=@token-factory/app",
     "format": "run-p format:packages format:prettier",
     "format:prettier": "prettier --write *",
     "format:packages": "npm run format --workspaces --if-present",
