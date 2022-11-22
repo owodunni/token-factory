@@ -9,11 +9,11 @@
   "scripts": {
     "dev": "npm run dev --workspace=@token-factory/app",
     "build": "npm run build --workspace=@token-factory/app",
-    "format": "run-p format:packages format:prettier",
-    "format:prettier": "prettier --write *",
+    "fix": "run-p format:packages format:prettier",
+    "format:prettier": "prettier --write .",
     "format:packages": "npm run format --workspaces --if-present",
     "lint": "run-p lint:prettier lint:packages",
-    "lint:prettier": "prettier --check *",
+    "lint:prettier": "prettier --check .",
     "lint:packages": "npm run lint --workspaces --if-present"
   },
   "keywords": [
