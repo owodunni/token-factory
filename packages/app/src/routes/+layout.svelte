@@ -1,5 +1,10 @@
-<script>
+<script lang=ts>
+	import Navbar from "../components/Navbar.svelte";
+
   import "../app.css";
 </script>
 
-<slot />
+<Navbar/>
+<main data-sveltekit-prefetch>
+  <slot />
+</main>
