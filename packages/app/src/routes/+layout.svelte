@@ -6,5 +6,7 @@
 
 <Navbar/>
 <main data-sveltekit-prefetch>
-  <slot />
+  <div class="p-8 flex place-content-center">
+    <slot />
+  </div>
 </main>
