@@ -1,13 +1,14 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoadEvent } from './$types';
-import { isPost } from './util';
+import { api } from '$lib/api';
+import type { Post } from '$lib/api';
 
-export async function load(load: PageLoadEvent) {
+export async function load(load: PageLoadEvent): Promise<Post> {
 	const { post } = load.params;
 
-	if (!isPost(post)) throw error(404, `Post ${post} not found`);
+	const postContent = api.getPost(post);
 
-	return {
-		content: post.default
-	};
+	if (!postContent) throw error(404, `Post ${post} not found`);
+
+	return postContent;
 }
