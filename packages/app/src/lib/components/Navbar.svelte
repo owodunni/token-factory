@@ -1,5 +1,4 @@
-<div class="navbar bg-base-100">
-	<!-->Menu</-->
+<div class="navbar">
 	<div class="flex-none hidden">
 		<button class="btn btn-square btn-ghost">
 			<svg
@@ -17,7 +16,6 @@
 		</button>
 	</div>
 
-	<!-->Title</-->
 	<div class="flex-1">
 		<a class="btn btn-ghost normal-case text-xl" href="/"
 			><p class="hidden sm:block">Token <span class="text-primary">Factory</span></p>
@@ -25,7 +23,6 @@
 		</a>
 	</div>
 
-	<!-->Buttons</-->
 	<div class="flex-none">
 		<a
 			aria-label="Github"
