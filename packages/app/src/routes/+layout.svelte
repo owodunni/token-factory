@@ -5,7 +5,7 @@
 </script>
 
 <main data-sveltekit-prefetch>
-  <div class="bg-base-300 h-screen">
+  <div class="bg-base-200 h-screen">
     <Navbar/>
     <div class="flex place-content-center">
       <slot />

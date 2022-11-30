@@ -1,4 +1,4 @@
-export type PostMetadata = { metadata: { title: string; excerpt: string } };
+export type PostMetadata = { metadata: { title: string; excerpt: string; post: string } };
 export type Post = { fileName: string } & PostMetadata;
 const posts = import.meta.globEager('../posts/*.md');
 
@@ -16,11 +16,11 @@ export const api: Api = {
 			const _post = post as PostMetadata;
 			return {
 				metadata: _post.metadata,
-				fileName: `${_post.metadata.title}`
+				fileName: `${_post.metadata.post}`
 			};
 		});
 	},
 	getPost(name: string): Post | undefined {
-		return this.getPosts().find((p: Post) => p.metadata.title.toLowerCase() === name.toLowerCase());
+		return this.getPosts().find((p: Post) => p.metadata.post.toLowerCase() === name.toLowerCase());
 	}
 };

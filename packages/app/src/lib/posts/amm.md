@@ -1,6 +1,7 @@
 ---
-title: amm
-excerpt: 'Creating a simple automated market maker'
+title: Decentralized exchanges
+post: amm
+excerpt: 'How to create and trade on a decentralized exchange'
 ---
 
 # Automated Market Makers!

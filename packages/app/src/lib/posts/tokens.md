@@ -1,6 +1,7 @@
 ---
-title: tokens
-excerpt: 'Creating a simple token'
+title: Tokens
+post: tokens
+excerpt: 'Creating your own token'
 ---
 
 # Tokens
