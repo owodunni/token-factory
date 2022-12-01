@@ -4,9 +4,11 @@
   import "../app.css";
 </script>
 
-<Navbar/>
 <main data-sveltekit-prefetch>
-  <div class="p-8 flex place-content-center">
-    <slot />
+  <div class="bg-base-200 h-screen">
+    <Navbar/>
+    <div class="flex place-content-center">
+      <slot />
+    </div>
   </div>
 </main>
