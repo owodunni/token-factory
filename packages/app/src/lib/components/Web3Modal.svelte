@@ -1,5 +1,16 @@
-<script>
+<script lang="ts">
     import IconWallet from "$lib/components/icons/IconWallet.svelte";
+    import {onMount} from "svelte";
+    import type {Ethereum} from "$lib/provider";
+
+    let ethereum: Ethereum | undefined
+    onMount(async () => {
+        ethereum = window.ethereum
+        if(!ethereum.isConnected() || !ethereum.selectedAddress){
+            await ethereum.enable()
+        }
+        console.log(ethereum.selectedAddress)
+    });
 </script>
 
 <label class="btn btn-ghost btn-sm bg-base-300 hidden sm:block" for="web3-modal">
