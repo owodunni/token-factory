@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import PostList from "$lib/components/PostList.svelte";
     import {api} from "$lib/api";
 
