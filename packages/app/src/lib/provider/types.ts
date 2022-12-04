@@ -1,4 +1,34 @@
-import type { EventEmitter } from './EventEmitter';
+export interface BaseProviderState {
+	type: 'connected' | 'disconnected' | 'loading';
+}
+
+export interface ConnectedProviderState extends BaseProviderState {
+	type: 'connected';
+	selectedAddress: string;
+	chainId: number;
+}
+
+export interface DisconnectedProviderState extends BaseProviderState {
+	type: 'disconnected';
+}
+
+export interface LoadingProviderState extends BaseProviderState {
+	type: 'loading';
+}
+
+export type ProviderState =
+	| ConnectedProviderState
+	| DisconnectedProviderState
+	| LoadingProviderState;
+
+export interface EventEmitter {
+	emit(eventName: string, args: never[]): EventEmitter;
+	on(eventName: string, listener: EventListener): EventEmitter;
+	addListener(eventName: string, listener: EventListener): EventEmitter;
+	off(eventName: string, listener: EventListener): EventEmitter;
+	removeListener(eventName: string, listener: EventListener): EventEmitter;
+	removeAllListeners(eventName?: string): EventEmitter;
+}
 
 export type JSONRPCId = string | number | null;
 

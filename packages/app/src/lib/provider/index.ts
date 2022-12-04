@@ -1,2 +1,2 @@
-export * from './Ethereum';
-export * from './EventEmitter';
+export * from './types';
+export * from './store';

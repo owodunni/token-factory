@@ -1,22 +1,13 @@
 <script lang="ts">
     import IconWallet from "$lib/components/icons/IconWallet.svelte";
-    import {onMount} from "svelte";
-    import type {Ethereum} from "$lib/provider";
-
-    let ethereum: Ethereum | undefined
-    onMount(async () => {
-        ethereum = window.ethereum
-        if(!ethereum.isConnected() || !ethereum.selectedAddress){
-            await ethereum.enable()
-        }
-        console.log(ethereum.selectedAddress)
-    });
+    import {providerState, disconnect, connect} from "$lib/provider";
 </script>
 
+{#if $providerState.type === "disconnected"}
 <label class="btn btn-ghost btn-sm bg-base-300 hidden sm:block" for="web3-modal">
-    <div class="flex flex-row items-center justify-evenly space-x-2">
+    <div class="flex flex-row items-center space-x-2">
         <IconWallet/>
-        <article class="prose"><p>Connect</p></article>
+        <span class="p-2">Connect</span>
     </div>
 </label>
 <label class="btn btn-ghost btn-sm bg-base-300 sm:hidden btn-circle" for="web3-modal" >
@@ -24,13 +15,15 @@
         <IconWallet/>
     </div>
 </label>
+{:else if $providerState.type === "connected"}
+    <button class="btn btn-ghost btn-sm bg-base-300 hidden sm:block p-2" on:click={disconnect}>{$providerState.selectedAddress}</button>
+{/if}
 
 <input type="checkbox" id="web3-modal" class="modal-toggle" />
 <label for="web3-modal" class="modal modal-bottom sm:modal-middle cursor-pointer">
-    <label class="modal-box relative" for="">
-        <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-        <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-    </label>
+    <div class="modal-box relative">
+        <label class="btn btn-ghost btn-sm bg-base-300 hidden sm:block p-2" for="web3-modal" on:click={connect} on:keypress={connect}>Connect</label>
+    </div>
 </label>
 
 
