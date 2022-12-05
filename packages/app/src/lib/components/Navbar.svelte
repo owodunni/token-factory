@@ -1,6 +1,7 @@
 <script lang="ts">
     import Web3Modal from "$lib/components/Web3Modal.svelte";
     import IconGithub from "$lib/components/icons/IconGithub.svelte";
+    import NavbarButton from "$lib/components/NavbarButton.svelte";
 </script>
 
 <div class="navbar">
@@ -33,7 +34,7 @@
     <div class="flex-none space-x-2">
         <Web3Modal/>
 
-        <div class="btn btn-ghost btn-sm bg-base-300 btn-circle" >
+        <NavbarButton size="sm">
             <a
                     aria-label="Github"
                     target="_blank"
@@ -43,6 +44,6 @@
                 <IconGithub/>
             </a
             >
-        </div>
+        </NavbarButton>
     </div>
 </div>
