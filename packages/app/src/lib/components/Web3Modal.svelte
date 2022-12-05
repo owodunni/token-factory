@@ -39,7 +39,7 @@
 <input type="checkbox" id="web3-modal" class="modal-toggle" bind:this={modalCheckbox}/>
 <label for="web3-modal" class="modal modal-bottom sm:modal-middle cursor-pointer">
     <div class="modal-box relative">
-        <button class="btn btn-ghost btn-sm bg-base-300 hidden sm:block p-2" on:click={connectAndToggle}>Connect
+        <button class="btn btn-ghost btn-sm bg-base-300" on:click={connectAndToggle}>Connect
         </button>
     </div>
 </label>
