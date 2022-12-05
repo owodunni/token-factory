@@ -2,6 +2,7 @@
     import IconWallet from "$lib/components/icons/IconWallet.svelte";
     import {providerState, disconnect, connect} from "$lib/provider";
     import NavbarButton from "$lib/components/NavbarButton.svelte";
+    import IconEthereum from "$lib/components/icons/IconEthereum.svelte";
 
     let modalCheckbox: HTMLInputElement;
     const toggleModal = () => {
@@ -12,6 +13,10 @@
         connect();
         toggleModal();
     };
+
+    function prettyAddress(address: string) {
+        return `${address.slice(0, 6)}...${address.slice(-4)}`;
+    }
 </script>
 
 {#if $providerState.type === "disconnected"}
@@ -22,8 +27,13 @@
         </div>
     </NavbarButton>
 {:else if $providerState.type === "connected"}
-    <button class="btn btn-ghost btn-sm bg-base-300 hidden sm:block p-2"
-            on:click={disconnect}>{$providerState.selectedAddress}</button>
+    <NavbarButton
+            on:click={disconnect}>
+        <div class="flex flex-row items-center space-x-2">
+        <IconEthereum />
+        <span class="p-2 hidden sm:block">{prettyAddress($providerState.selectedAddress)}</span>
+        </div>
+    </NavbarButton>
 {/if}
 
 <input type="checkbox" id="web3-modal" class="modal-toggle" bind:this={modalCheckbox}/>
