@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Web3Modal from "$lib/components/Web3Modal.svelte";
+    import Web3Modal from "./NavbarWeb3Modal.svelte";
     import IconGithub from "$lib/components/icons/IconGithub.svelte";
     import NavbarButton from "$lib/components/NavbarButton.svelte";
 </script>
