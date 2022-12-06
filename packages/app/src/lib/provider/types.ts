@@ -2,10 +2,13 @@ export interface BaseProviderState {
 	type: 'connected' | 'disconnected' | 'loading';
 }
 
+export type ProviderType = 'metamask' | 'opera' | 'other';
+
 export interface ConnectedProviderState extends BaseProviderState {
 	type: 'connected';
 	selectedAddress: string;
 	chainId: number;
+	providerType: ProviderType;
 }
 
 export interface DisconnectedProviderState extends BaseProviderState {
