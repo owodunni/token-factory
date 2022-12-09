@@ -35,7 +35,7 @@
 
 <input type="checkbox" id="web3-modal" class="modal-toggle" bind:this={modalCheckbox}/>
 <label for="web3-modal" class="modal modal-bottom sm:modal-middle cursor-pointer">
-    <div class="modal-box relative">
+    <div class="modal-box relative pb-20">
         <Web3ProviderSheet on:close={toggleModal}/>
     </div>
 </label>
