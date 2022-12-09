@@ -4,6 +4,11 @@ post: setup
 excerpt: 'How do you set up your web3 wallet and get started with dApps?'
 ---
 
+<script lang="ts">
+    import metamask from "$lib/posts/images/metamask.svg";
+    import cryptoBrowser from "$lib/posts/images/OperaCryptoBrowser.png";
+</script>
+
 # Get started with web3!
 
 Web3 is a new way to interact with the internet. It's a decentralized network of computers that allows you to interact
@@ -14,11 +19,11 @@ There are many wallets available, but we recommend [MetaMask](https://metamask.i
 
 <div class="flex flex-row justify-between">
     <a href="https://metamask.io/" class="flex flex-col items-center">
-        <img alt="Metamask" src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" width="200">
+        <img alt="Metamask" src={metamask} width="200">
         <p>Metamask (Desktop)</p>
     </a>
     <a href="https://www.opera.com/crypto/next" class="flex flex-col items-center">
-        <img alt="Opera Crypto Browser" src="https://play-lh.googleusercontent.com/JVYvD5rY9UTbGv8EtrNf4S9I5hQsdKDT8gu66dFlzNuXcfK3gm5esROv2ZtTaWeITCw" width="200">
+        <img alt="Opera Crypto Browser" src={cryptoBrowser} width="200">
         <p>Opera Crypto Browser (Mobile)</p>
     </a>
 </div>
