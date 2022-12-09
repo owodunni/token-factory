@@ -13,9 +13,11 @@ excerpt: 'How do you set up your web3 wallet and get started with dApps?'
 
 Web3 is a new way to interact with the internet. It's a decentralized network of computers that allows you to interact
 with dApps (decentralized applications) and smart contracts.
-To gain access to web3 you need a wallet and a browser. A wallet is a piece of software that allows you to interact with web3.
+To gain access to web3 you need a wallet and a browser. A wallet is a piece of software that allows you to interact with
+web3.
 
-There are many wallets available, but we recommend [MetaMask](https://metamask.io/) for **desktop** or [Opera Crypto Browser](https://www.opera.com/crypto/next) for **mobile** when doing our tutorials.
+There are many wallets available, but we recommend [MetaMask](https://metamask.io/) for **desktop**
+or [Opera Crypto Browser](https://www.opera.com/crypto/next) for **mobile** when doing our tutorials.
 
 <div class="flex flex-row justify-between">
     <a href="https://metamask.io/" class="flex flex-col items-center">
