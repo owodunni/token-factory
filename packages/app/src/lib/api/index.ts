@@ -16,7 +16,7 @@ interface Api {
 
 	getArticle(name: string, category: string): Article | undefined;
 
-	getArticlesByCategory(category: string): Article[] | undefined;
+	getArticlesByCategory(category: string): Article[];
 }
 
 /**
@@ -47,7 +47,7 @@ export const api: Api = {
 				p.category.toLowerCase() === category.toLowerCase()
 		);
 	},
-	getArticlesByCategory(categorySlug: string): Article[] | undefined {
+	getArticlesByCategory(categorySlug: string): Article[] {
 		return this.getArticles()
 			.filter((p: Article) => p.category.toLowerCase() === categorySlug.toLowerCase())
 			.sort((a, b) => a.metadata.index - b.metadata.index);
