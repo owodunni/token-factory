@@ -8,7 +8,7 @@ export async function load(load: PageLoadEvent): Promise<Article> {
 
 	const postContent = api.getArticle(article, category);
 
-	if (!postContent) throw error(404, `Article ${category}/${article} not found`);
+	if (!postContent) throw error(404, `Article '${category}/${article}' not found`);
 
 	return postContent;
 }

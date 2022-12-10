@@ -1,9 +1,19 @@
 <script lang="ts">
  import type {Category} from "$lib/api";
  import ArticleList from "$lib/components/ArticleList.svelte";
+ import type {CardData} from "$lib/types";
+ import {api} from "$lib/api";
 
  export let data: Category
- console.log(data)
+ function getArticles(category: string): CardData[] {
+     return api.getArticlesByCategory(category).map((article) => {
+         return {
+             title: article.metadata.title,
+             excerpt: article.metadata.excerpt,
+             link: `/${category}/${article.metadata.slug}`,
+         };
+     });
+ }
 </script>
 
 <div>
@@ -11,5 +21,5 @@
         <h2>{data.title}</h2>
         <p>{data.excerpt}</p>
     </article>
-    <ArticleList category={data}/>
+    <ArticleList articles={getArticles(data.slug)}/>
 </div>
