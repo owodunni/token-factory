@@ -1,13 +1,14 @@
 ---
 title: Get started with web3
-post: setup
+slug: setup
 excerpt: 'How do you set up your web3 wallet and get started with dApps?'
+index: 0
 ---
 
 <script lang="ts">
-    import metamask from "$lib/posts/images/metamask.svg";
-    import cryptoBrowser from "$lib/posts/images/OperaCryptoBrowser.png";
-    import sepolia from "$lib/posts/images/sepolia.png";
+    import metamask from "$lib/categories/web3/images/metamask.svg";
+    import cryptoBrowser from "$lib/categories/web3/images/OperaCryptoBrowser.png";
+    import sepolia from "$lib/categories/web3/images/sepolia.png";
 </script>
 
 # Get started with web3!

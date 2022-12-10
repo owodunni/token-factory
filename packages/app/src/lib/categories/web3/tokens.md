@@ -1,7 +1,8 @@
 ---
 title: Tokens
-post: tokens
+slug: tokens
 excerpt: 'Creating your own token'
+index: 2
 ---
 
 # Tokens

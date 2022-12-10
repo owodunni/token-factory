@@ -1,8 +1,9 @@
 <script lang="ts">
-    import PostList from "$lib/components/PostList.svelte";
+    import ArticleList from "../lib/components/ArticleList.svelte";
     import {api} from "$lib/api";
+    import CategoryList from "$lib/components/CategoryList.svelte";
 
-    const posts = api.getPosts();
+    const categories = api.getCategories();
 </script>
 
 <div class="px-2">
@@ -11,10 +12,19 @@
             <h1>Token <span class="text-primary">Factory</span></h1>
             <h3>An educational tool for learning about DeFi.</h3>
         </article>
-        <div class="my-4 flex gap-2">
-            <a class="btn" href="/blog">About</a>
-            <button class="btn btn-primary">Mint</button>
-        </div>
     </div>
-    <PostList posts={posts} category="Web3"/>
+    <div class="my-8">
+        <article class="prose">
+            <h2>Categories</h2>
+        </article>
+        <CategoryList {categories}/>
+    </div>
+    {#each categories as category}
+        {#if api.getArticlesByCategory(category.slug).length > 0}
+        <article class="prose">
+            <h3>{category.title}</h3>
+        </article>
+        <ArticleList {category}/>
+        {/if}
+    {/each}
 </div>
