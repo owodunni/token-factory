@@ -1,6 +1,5 @@
 ---
 title: 'Exploring the Different Types of Cryptocurrency Tokens'
-slug: tokens
 excerpt: 'Cryptocurrency tokens are digital assets that are used to represent a specific value on a blockchain. These tokens can
 be used for a variety of purposes, such as representing a digital asset, a utility, or even a form of digital currency.'
 index: 2

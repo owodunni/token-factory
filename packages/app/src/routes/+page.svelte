@@ -1,29 +1,8 @@
 <script lang="ts">
-    import ArticleList from "../lib/components/ArticleList.svelte";
+    import ArticleList from "$lib/components/ArticleList.svelte";
     import {api} from "$lib/api";
-    import type {CardData} from "$lib/types";
 
     const categories = api.getCategories();
-
-    function getArticles(category: string): CardData[] {
-       return api.getArticlesByCategory(category).map((article) => {
-          return {
-             title: article.metadata.title,
-             excerpt: article.metadata.excerpt,
-              link: `/${category}/${article.metadata.slug}`,
-          };
-       });
-    }
-
-    function getCategories(): CardData[] {
-       return api.getCategories().map((category) => {
-          return {
-             title: category.title,
-             excerpt: category.excerpt,
-             link: `/${category.slug}`,
-          };
-       });
-    }
 </script>
 
 <div class="px-2">
@@ -37,12 +16,12 @@
         <article class="prose">
             <h2>Categories</h2>
         </article>
-        <ArticleList articles={getCategories()} />
+        <ArticleList articles={api.getCategories()} />
     </div>
     {#each categories as category}
         <article class="prose">
             <h3>{category.title}</h3>
         </article>
-        <ArticleList articles={getArticles(category.slug)} />
+        <ArticleList articles={api.getArticlesByCategory(category.slug)} />
     {/each}
 </div>

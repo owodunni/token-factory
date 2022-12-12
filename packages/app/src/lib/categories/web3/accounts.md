@@ -1,6 +1,5 @@
 ---
 title: 'A Closer Look at Ethereum Accounts and How They Work'
-slug: accounts
 excerpt: 'Ethereum accounts are a way of identifying the ownership and authorization of certain actions on the Ethereum
 network. They are similar to bank accounts, and are used to send and receive ether (ETH), the native cryptocurrency of
 the Ethereum network, as well as to interact with smart contracts.'

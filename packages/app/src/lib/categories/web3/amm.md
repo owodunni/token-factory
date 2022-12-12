@@ -1,6 +1,5 @@
 ---
 title: 'Decentralized Exchanges and Automated Market Makers: An Introduction'
-slug: amm
 excerpt: 'Decentralized exchanges (DEXs) and automated market makers (AMMs) are both forms of cryptocurrency exchanges.
 A cryptocurrency exchange is a platform that allows users to buy and sell cryptocurrencies.'
 index: 1

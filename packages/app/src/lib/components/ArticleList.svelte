@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type {CardData} from "../types";
     import ArticleCard from "$lib/components/ArticleCard.svelte";
+    import type {CardData} from "$lib/api";
 
     export let articles: CardData[];
 </script>

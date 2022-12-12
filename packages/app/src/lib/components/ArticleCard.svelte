@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {CardData} from "../types";
+    import type {CardData} from "$lib/api";
 
     export let article: CardData;
 </script>
