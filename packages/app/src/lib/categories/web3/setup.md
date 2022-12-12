@@ -1,6 +1,5 @@
 ---
 title: Get started with web3
-slug: setup
 excerpt: 'How do you set up your web3 wallet and get started with dApps?'
 index: 0
 ---
