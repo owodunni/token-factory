@@ -5,7 +5,7 @@
     export let articles: CardData[];
 </script>
 <section
-        class="flex flex-col">
+        class="flex flex-col gap-y-4">
     {#each articles as article}
         <ArticleCard {article}/>
     {/each}
