@@ -7,8 +7,8 @@
 </script>
 
 <div>
-    <article class="prose">
-        <h2>{data.title}</h2>
+    <article class="prose mb-4">
+        <h3>{data.title}</h3>
         <p>{data.excerpt}</p>
     </article>
     <ArticleList articles={api.getArticlesByCategory(data.slug)}/>

@@ -20,7 +20,7 @@
     <NavbarButton on:click={toggleModal}>
         <div class="flex flex-row items-center space-x-2">
             <IconWallet/>
-            <span class="p-2 hidden sm:block">Connect</span>
+            <span class="p-2 hidden sm:block normal-case">Connect</span>
         </div>
     </NavbarButton>
 {:else if $providerState.type === "connected"}

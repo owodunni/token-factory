@@ -1,3 +1,3 @@
-<article class="prose p-2 sm:p-0">
+<article class="prose">
 	<slot />
 </article>

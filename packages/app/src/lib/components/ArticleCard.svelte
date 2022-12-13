@@ -7,7 +7,7 @@
 <a href={article.link}
    on:click>
     <article class="prose">
-        <h2>{article.title}</h2>
+        <h4 class="text-primary mb-0">{article.title}</h4>
         <p class="line-clamp-3">{article.excerpt}</p>
     </article>
 </a>
