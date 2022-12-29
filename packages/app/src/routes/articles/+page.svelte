@@ -1,18 +1,10 @@
 <script>
-    import ArticleList from "$lib/components/ArticleList.svelte";
-    import {api} from "$lib/api";
-    import Divider from "$lib/components/Divider.svelte";
+	import ArticlesWidget from "$lib/components/ArticlesWidget.svelte";
 </script>
 
 <div class="my-4">
-    <article class="prose mb-4">
-        <h2>Categories</h2>
-    </article>
-    <ArticleList articles={api.getCategories()} />
-    <Divider></Divider>
-    <article class="prose mb-4">
-        <h2>Articles</h2>
-    </article>
-    <ArticleList articles={api.getArticlesByCategory()} />
-    <Divider></Divider>
+  <article class="prose text-center">
+    <h1>Articles</h1>
+  </article>
+  <ArticlesWidget/>
 </div>

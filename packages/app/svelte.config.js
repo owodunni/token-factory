@@ -4,20 +4,20 @@ import { mdsvex } from 'mdsvex';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
-	preprocess: [
-		preprocess({ postcss: true }),
-		mdsvex({
-			extensions: ['.md', '.svx']
-		})
-	],
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  preprocess: [
+    preprocess({ postcss: true }),
+    mdsvex({
+      extensions: ['.md', '.svx']
+    })
+  ],
 
-	kit: {
-		adapter: adapter()
-	},
+  kit: {
+    adapter: adapter()
+  },
 
-	extensions: ['.svelte', '.md', '.svx']
+  extensions: ['.svelte', '.md', '.svx']
 };
 
 export default config;

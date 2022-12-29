@@ -25,10 +25,6 @@
     </div>
 
     <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl" href="/"
-        ><p class="hidden sm:block">Token <span class="text-primary">Factory</span></p>
-            <p class="sm:hidden">T <span class="text-primary">F</span></p>
-        </a>
     </div>
 
     <div class="flex-none space-x-2">
