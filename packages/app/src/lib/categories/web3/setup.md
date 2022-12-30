@@ -1,7 +1,7 @@
 ---
 title: Get started with web3
 excerpt: 'How do you set up your web3 wallet and get started with dApps?'
-index: 0
+date: '2022-12-10'
 ---
 
 <script lang="ts">

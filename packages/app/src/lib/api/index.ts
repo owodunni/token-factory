@@ -1,7 +1,13 @@
-export type CardData = { title: string; excerpt: string; link: string; slug?: string };
+export type CardData = {
+  title: string;
+  excerpt: string;
+  link: string;
+  slug?: string;
+  date?: string;
+};
 
 export type ArticleMetaData = {
-  metadata: { title: string; excerpt: string; index: number };
+  metadata: { title: string; excerpt: string; date: string };
 };
 export type Article = {
   fileName: string;
@@ -50,7 +56,8 @@ export const api: Api = {
       return {
         metadata: _article.metadata,
         fileName: `${parts[3].split('.')[0]}`,
-        category: parts[2]
+        category: parts[2],
+        date: _article.metadata.date
       };
     });
   },
@@ -66,11 +73,12 @@ export const api: Api = {
       .filter(
         (p: Article) => !categorySlug || p.category.toLowerCase() === categorySlug.toLowerCase()
       )
-      .sort((a, b) => a.metadata.index - b.metadata.index)
+      .sort((a, b) => new Date(a.metadata.date).getTime() - new Date(b.metadata.date).getTime())
       .map((article: Article) => ({
         title: article.metadata.title,
         excerpt: article.metadata.excerpt,
-        link: `/articles/${article.category}/${article.fileName}`
+        link: `/articles/${article.category}/${article.fileName}`,
+        date: article.metadata.date
       }));
   }
 };
