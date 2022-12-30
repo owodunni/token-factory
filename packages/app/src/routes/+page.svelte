@@ -11,8 +11,7 @@
 <div class="px-2">
 	<div class="flex flex-col">
 		<article class="prose text-center">
-			<h1>Alexander's Website</h1>
-			<h3>Welcome to my articles on software, blockchains and web3.</h3>
+			<h3>Articles on software, blockchains and web3.</h3>
 		{#if $providerState.type === 'disconnected'}
 			<p>Many of the articles are interactive and require a web3 wallet.</p>
 		{/if}
@@ -23,8 +22,6 @@
 				<a class="btn normal-case" href="/articles/web3/setup">Setup Wallet</a>
 			</div>
 		{/if}
-		<div class="pt-4">
-      <ArticlesWidget/>
-		</div>
+    <ArticlesWidget/>
 	</div>
 </div>
