@@ -1,63 +1,63 @@
 export interface BaseProviderState {
-	type: 'connected' | 'disconnected' | 'loading';
+  type: 'connected' | 'disconnected' | 'loading';
 }
 
 export type ProviderType = 'metamask' | 'opera' | 'other';
 
 export interface ConnectedProviderState extends BaseProviderState {
-	type: 'connected';
-	selectedAddress: string;
-	chainId: number;
-	providerType: ProviderType;
+  type: 'connected';
+  selectedAddress: string;
+  chainId: number;
+  providerType: ProviderType;
 }
 
 export interface DisconnectedProviderState extends BaseProviderState {
-	type: 'disconnected';
+  type: 'disconnected';
 }
 
 export interface LoadingProviderState extends BaseProviderState {
-	type: 'loading';
+  type: 'loading';
 }
 
 export type ProviderState =
-	| ConnectedProviderState
-	| DisconnectedProviderState
-	| LoadingProviderState;
+  | ConnectedProviderState
+  | DisconnectedProviderState
+  | LoadingProviderState;
 
 export interface EventEmitter {
-	emit(eventName: string, args: never[]): EventEmitter;
-	on(eventName: string, listener: EventListener): EventEmitter;
-	addListener(eventName: string, listener: EventListener): EventEmitter;
-	off(eventName: string, listener: EventListener): EventEmitter;
-	removeListener(eventName: string, listener: EventListener): EventEmitter;
-	removeAllListeners(eventName?: string): EventEmitter;
+  emit(eventName: string, args: never[]): EventEmitter;
+  on(eventName: string, listener: EventListener): EventEmitter;
+  addListener(eventName: string, listener: EventListener): EventEmitter;
+  off(eventName: string, listener: EventListener): EventEmitter;
+  removeListener(eventName: string, listener: EventListener): EventEmitter;
+  removeAllListeners(eventName?: string): EventEmitter;
 }
 
 export type JSONRPCId = string | number | null;
 
 export interface JSONRPCRequest {
-	jsonrpc: '2.0';
-	method: string;
-	params?: unknown[] | object;
-	id?: JSONRPCId;
+  jsonrpc: '2.0';
+  method: string;
+  params?: unknown[] | object;
+  id?: JSONRPCId;
 }
 
 export interface JSONRPCError {
-	message: string;
-	code: number;
-	data?: unknown;
+  message: string;
+  code: number;
+  data?: unknown;
 }
 
 export interface JSONRPCResultResponse {
-	jsonrpc: '2.0';
-	id: JSONRPCId;
-	result: unknown;
+  jsonrpc: '2.0';
+  id: JSONRPCId;
+  result: unknown;
 }
 
 export interface JSONRPCErrorResponse {
-	jsonrpc: '2.0';
-	id: JSONRPCId;
-	error: JSONRPCError;
+  jsonrpc: '2.0';
+  id: JSONRPCId;
+  error: JSONRPCError;
 }
 
 export type JSONRPCResponse = JSONRPCErrorResponse | JSONRPCResultResponse;
@@ -65,29 +65,29 @@ export type JSONRPCResponse = JSONRPCErrorResponse | JSONRPCResultResponse;
 export type JSONRPCCallback = (error: JSONRPCError | null, response: JSONRPCResponse) => unknown;
 
 declare global {
-	interface Window {
-		ethereum?: Ethereum;
-		web3?: { currentProvider: Ethereum };
-	}
+  interface Window {
+    ethereum?: Ethereum;
+    web3?: { currentProvider: Ethereum };
+  }
 }
 
 export interface Ethereum extends EventEmitter {
-	isOpera?: boolean;
-	isMetaMask?: boolean;
-	_metamask?: { isUnlocked: () => boolean };
-	chainId: string | null;
-	networkVersion: string | null;
+  isOpera?: boolean;
+  isMetaMask?: boolean;
+  _metamask?: { isUnlocked: () => boolean };
+  chainId: string | null;
+  networkVersion: string | null;
 
-	selectedAddress: string | null;
+  selectedAddress: string | null;
 
-	enable(): Promise<string>;
+  enable(): Promise<string>;
 
-	isConnected(): boolean;
+  isConnected(): boolean;
 
-	send(
-		requestOrMethod: JSONRPCRequest | string,
-		callbackOrParams?: JSONRPCCallback | unknown[]
-	): Promise<JSONRPCResponse>;
+  send(
+    requestOrMethod: JSONRPCRequest | string,
+    callbackOrParams?: JSONRPCCallback | unknown[]
+  ): Promise<JSONRPCResponse>;
 
-	request(request: JSONRPCRequest): Promise<unknown>;
+  request(request: JSONRPCRequest): Promise<unknown>;
 }
