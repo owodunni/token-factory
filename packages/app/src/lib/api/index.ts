@@ -73,7 +73,7 @@ export const api: Api = {
       .filter(
         (p: Article) => !categorySlug || p.category.toLowerCase() === categorySlug.toLowerCase()
       )
-      .sort((a, b) => new Date(a.metadata.date).getTime() - new Date(b.metadata.date).getTime())
+      .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
       .map((article: Article) => ({
         title: article.metadata.title,
         excerpt: article.metadata.excerpt,

@@ -10,8 +10,8 @@
 
 <div class="px-2">
 	<div class="flex flex-col">
-		<article class="prose text-center">
-			<h3>Articles on software, blockchains and web3.</h3>
+		<article class="prose text-center prose-sm">
+			<h2>Articles on software, blockchains and web3.</h2>
 		{#if $providerState.type === 'disconnected'}
 			<p>Many of the articles are interactive and require a web3 wallet.</p>
 		{/if}

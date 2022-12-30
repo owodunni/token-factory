@@ -1,0 +1,54 @@
+---
+title: Exploring EIP-1559 and how to optimize gas fees
+excerpt: 'Whenever I send a transaction it always pussles me why the gas estimation is so bad. In most cases I want to send a transaction
+that is as cheap as possible, but the gas estimation is always way too high.'
+date: '2022-12-30'
+---
+
+# Exploring EIP-1559 and how to optimize gas fees
+
+Whenever I send a transaction it always pussles me why the gas estimation is so bad. In most cases I want to send a transaction
+that is as cheap as possible, but the gas estimation is always way too high. I can get it down to a more reasonable number by
+manually tuning the priority fees. There are tools like [Blocknative Gas Fee Predictor](https://www.blocknative.com/gas-estimator)
+that can help you find a descent gas price, it's still a bit of a guessing game.
+
+### Method
+
+In this article we will look at how to answer the questions:
+
+1. How much gas do I need to send a transaction within `X` minutes?
+2. Given `gas`, `max_fee_per_gas` and `max_priority_fee_per_gas`, how long will it take for a transaction to get included in a block?
+
+To answer these questions we will do a couple of experiments.
+
+1. What does the distribution of `gas` look like for transactions that are included in a block?
+2. How does the distribution of validated transactions compare to the distribution of transactions in the mempool?
+
+## Background
+
+If you are not familiar with EIP-1559 transactions I recommend you read [this article](https://www.blocknative.com/blog/eip-1559-fees).
+What you need to know is:
+
+- `gas` is the amount of computational work that needs to be done to execute a transaction. It's determined by how many EVM
+  [`opcodes`](https://ethereum.org/en/developers/docs/evm/opcodes/) are executed.
+- `base_fee` is the lowest gas price that is accepted by the network. If you set the gas price lower than the base fee your
+  transaction will be rejected. The base fee is calculated by the network and is adjusted every block. The `base_fee` is burned.
+- `priority_fee` is the amount of ether you are willing to pay on top of the base fee. The higher the priority fee the higher
+  the priority of your transaction. Transactions with a higher priority will be included in a block sooner. The `priority_fee`
+  goes to the validator.
+- `max_fee_per_gas` is the maximum amount of ether you are willing to pay for a unit of gas. This is the total amount of ether
+  you are willing to pay for the transaction. If its to low your transaction is not valid for inclusion in any block.
+- `max_priority_fee_per_gas` is the amount of ether you are willing to pay for a unit of gas on top of the base fee. If its to
+  low no validator will include your transaction in a block.
+
+`max_fee_per_gas` and `max_priority_fee_per_gas` are the parameters you can tune to get the gas price you want. We can se how they
+work by reading the [EIP-1559](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1559.md):
+
+```
+priority_fee_per_gas = min(
+  transaction.max_priority_fee_per_gas,
+  transaction.max_fee_per_gas - block.base_fee_per_gas)
+effective_gas_price = priority_fee_per_gas + block.base_fee_per_gas
+```
+
+To be continued.
