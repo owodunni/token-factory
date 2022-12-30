@@ -37,5 +37,5 @@ function connectAndClose() {
     {:else}
     <article class="prose prose-sm mt-2 px-4">
         <h3>Oops! We could not find a wallet.</h3>
-        <p>Check out this <a href="/blog/setup" class="text-primary" on:click={close}>tutorial</a> on how to setup a web3 wallet.</p></article>
+        <p>Check out this <a href="/articles/web3/setup" class="text-primary" on:click={close}>tutorial</a> on how to setup a web3 wallet.</p></article>
     {/if}

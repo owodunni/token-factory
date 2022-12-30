@@ -3,8 +3,8 @@
 </script>
 
 <div class="my-4">
-  <article class="prose">
-    <h3>Articles</h3>
+  <article class="prose prose-sm">
+    <h2>Articles</h2>
   </article>
   <ArticlesWidget/>
 </div>
