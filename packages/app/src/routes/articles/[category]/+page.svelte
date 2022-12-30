@@ -9,8 +9,8 @@
 
 <div>
     <article class="prose mb-4">
-        <h2>{data.title}</h2>
-        <h4>{data.excerpt}</h4>
+        <h3>{data.title}</h3>
+        <p>{data.excerpt}</p>
     </article>
     <Divider></Divider>
     <ArticleList articles={api.getArticlesByCategory(data.slug)}/>
