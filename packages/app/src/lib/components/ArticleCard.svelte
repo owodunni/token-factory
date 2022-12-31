@@ -6,13 +6,13 @@
 </script>
 
 <a href={article.link} on:click>
-  <article class="prose prose-sm">
+  <article class="lg:max-w-2xl prose prose-sm">
     <h4 class="text-primary my-0">{article.title}</h4>
     {#if showExcerpt}
       <p class="line-clamp-2 my-0">{article.excerpt}</p>
     {/if}
     {#if article.date}
-      <p class="text-xs my-0">{article.date}</p>
+      <i class="text-xs my-0">{article.date}</i>
     {/if}
   </article>
 </a>

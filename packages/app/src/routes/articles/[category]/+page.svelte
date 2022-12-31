@@ -8,7 +8,7 @@
 </script>
 
 <div>
-    <article class="prose mb-4">
+    <article class="prose prose-sm mb-4">
         <h3>{data.title}</h3>
         <p>{data.excerpt}</p>
     </article>
