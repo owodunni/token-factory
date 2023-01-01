@@ -1,7 +1,7 @@
 <script lang="ts">
-	import ArticleList from './ArticleList.svelte';
-	import { api } from '../api';
-	import Divider from './Divider.svelte';
+  import ArticleList from './ArticleList.svelte';
+  import { api } from '../api';
+  import Divider from './Divider.svelte';
 </script>
 
 <Divider />

@@ -1,6 +1,6 @@
 <script>
-    import Divider from "$lib/components/Divider.svelte";
-
+  import Divider from '$lib/components/Divider.svelte';
 </script>
-<slot/>
-<Divider></Divider>
+
+<slot />
+<Divider />

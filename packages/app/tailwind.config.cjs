@@ -1,7 +1,18 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+  content: ['./src/**/*.{html,js,svelte,ts,md}'],
+  safelist: [
+    'mr-1',
+    'opacity-20',
+    'hover:opacity-60',
+    'text-base',
+    'font-bold',
+    'inline-block',
+    'align-middle',
+    'relative',
+    '-mt-1'
+  ],
   theme: {
     extend: {}
   },
@@ -15,7 +26,7 @@ module.exports = {
     })
   ],
   daisyui: {
-    themes: ['fantasy', 'night'],
-    darkTheme: 'night'
+    themes: ['bumblebee', 'halloween'],
+    darkTheme: 'halloween'
   }
 };
