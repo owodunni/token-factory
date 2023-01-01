@@ -26,7 +26,7 @@ module.exports = {
     })
   ],
   daisyui: {
-    themes: ['fantasy', 'night'],
-    darkTheme: 'night'
+    themes: ['bumblebee', 'halloween'],
+    darkTheme: 'halloween'
   }
 };

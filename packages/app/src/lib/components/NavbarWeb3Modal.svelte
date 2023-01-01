@@ -32,7 +32,7 @@
     </div>
   </NavbarButton>
 {:else if $providerState.type === 'connected'}
-  <NavbarButton on:click={disconnect} modifiers="bg-secondary">
+  <NavbarButton on:click={disconnect} modifiers="bg-primary bg-opacity-20">
     <div class="flex flex-row items-center space-x-2">
       <IconEthereum />
       <span class="p-2 hidden sm:block normal-case"
