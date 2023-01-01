@@ -9,10 +9,10 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "run-p  lint:prettier lint:eslint",
-    "lint:prettier": "prettier --plugin-search-dir . --check '**/*.{js,ts,svelte,md,json,html,css}' .",
+    "lint:prettier": "prettier --plugin-search-dir . --check '**/*.{js,ts,svelte,md,json,html,css,cjs}' .",
     "lint:eslint": "eslint . --max-warnings=0",
     "format": "run-p format:eslint format:prettier",
-    "format:prettier": "prettier --plugin-search-dir . --write '**/*.{js,ts,svelte,md,json,html,css}' .",
+    "format:prettier": "prettier --plugin-search-dir . --write '**/*.{js,ts,svelte,md,json,html,css,cjs}' .",
     "format:eslint": "eslint . --fix --max-warnings=0"
   },
   "devDependencies": {
