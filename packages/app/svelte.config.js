@@ -9,7 +9,7 @@ const rehypePlugins = [
   [
     linkHeadings,
     {
-      behavior: 'prepend',
+      behavior: 'append',
       content: {
         type: 'element',
         tagName: 'span',
