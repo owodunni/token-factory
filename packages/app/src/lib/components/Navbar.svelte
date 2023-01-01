@@ -26,7 +26,7 @@
   <div class="flex-1">
     <a class="btn btn-ghost normal-case text-xl" href="/"
       ><p class="hidden sm:block">Web3 <span class="text-primary">Factory</span></p>
-      <p class="sm:hidden">W <span class="text-primary">F</span></p>
+      <p class="sm:hidden">W<span class="text-primary">F</span></p>
     </a>
   </div>
 
