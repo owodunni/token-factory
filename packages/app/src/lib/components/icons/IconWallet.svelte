@@ -1,10 +1,14 @@
+<script lang="ts">
+  export let classProps = 'inline-block h-5 w-5 md:h-6 md:w-6';
+</script>
+
 <svg
   xmlns="http://www.w3.org/2000/svg"
   fill="none"
   viewBox="0 0 24 24"
   stroke-width="1.5"
   stroke="currentColor"
-  class="inline-block h-5 w-5 md:h-6 md:w-6"
+  class={classProps}
 >
   <path
     stroke-linecap="round"
