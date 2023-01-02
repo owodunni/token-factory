@@ -1,27 +1,8 @@
 <script lang="ts">
   import Navbar from '$lib/components/Navbar.svelte';
 
-  import { browser } from '$app/environment';
-  import 'prism-themes/themes/prism-material-light.css';
+  import '../prism-theme.css';
   import '../app.css';
-
-  function toggleTheme() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      import('prism-themes/themes/prism-material-dark.css');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      import('prism-themes/themes/prism-material-light.css');
-    }
-  }
-
-  if (browser) {
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', () => toggleTheme());
-    window
-      .matchMedia('(prefers-color-scheme: light)')
-      .addEventListener('change', () => toggleTheme());
-    toggleTheme();
-  }
 </script>
 
 <main data-sveltekit-prefetch>
