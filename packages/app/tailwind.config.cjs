@@ -26,7 +26,20 @@ module.exports = {
     })
   ],
   daisyui: {
-    themes: ['bumblebee', 'halloween'],
+    themes: [
+      {
+        bumblebee2: {
+          primary: '#f28c18',
+          'primary-content': '#181830',
+          secondary: '#f9d72f',
+          'secondary-content': '#181830',
+          accent: '#181830',
+          neutral: '#181830',
+          'base-100': '#ffffff'
+        }
+      },
+      'halloween'
+    ],
     darkTheme: 'halloween'
   }
 };
