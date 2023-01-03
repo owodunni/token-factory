@@ -10,8 +10,6 @@ date: '2022-12-10'
     import sepolia from "$lib/categories/web3/images/sepolia.png";
 </script>
 
-# Get started with web3!
-
 Web3 is a new way to interact with the internet. It's a decentralized network of computers that allows you to interact
 with dApps (decentralized applications) and smart contracts.
 To gain access to web3 you need a wallet and a browser. A wallet is a piece of software that allows you to interact with
