@@ -9,9 +9,9 @@ module.exports = {
     'text-base',
     'font-bold',
     'inline-block',
-    'align-middle',
-    'relative',
-    '-mt-1'
+    'float-left',
+    'pr-1',
+    '-ml-4'
   ],
   theme: {
     extend: {}

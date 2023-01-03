@@ -9,14 +9,12 @@ const rehypePlugins = [
   [
     linkHeadings,
     {
-      behavior: 'append',
+      behavior: 'prepend',
       content: {
         type: 'element',
         tagName: 'span',
         properties: {
-          className: [
-            'opacity-20 hover:opacity-60 text-base font-bold inline-block align-middle relative -mt-1'
-          ]
+          className: ['opacity-20 hover:opacity-60 font-bold inline-block float-left pr-1 -ml-4']
         },
         children: [
           {
