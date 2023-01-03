@@ -6,7 +6,7 @@ pre[class*='language-'] {
   word-break: normal;
   word-wrap: normal;
   color: hsl(var(--tw-prose-body));
-  background: hsl(var(--b2));
+  background: hsl(var(--b3));
   font-family: Roboto Mono, monospace;
   font-size: 1em;
   line-height: 1.5em;
