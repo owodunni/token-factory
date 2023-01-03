@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let modifiers = '';
   export let classProps = 'inline-block h-5 w-5 md:h-6 md:w-6';
 </script>
 
@@ -8,7 +9,7 @@
   viewBox="0 0 24 24"
   stroke-width="1.5"
   stroke="currentColor"
-  class={classProps}
+  class={`${classProps} ${modifiers}`}
 >
   <path
     stroke-linecap="round"
