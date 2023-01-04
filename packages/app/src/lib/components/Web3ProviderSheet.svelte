@@ -25,9 +25,8 @@
 </div>
 
 {#if available.length > 0}
-  <article class="prose prose-sm mb-2"><p>Choose wallet</p></article>
   {#each available as provider}
-    <button class="btn btn-md btn-ghost" on:click={connectAndClose}>
+    <button class="btn btn-md btn-ghost mt-2" on:click={connectAndClose}>
       <div class="w-full flex flex-col items-center">
         <IconProviders {provider} classProps="w-8 h-8" />
         <span class="text-xs capitalize">{provider}</span>
@@ -35,7 +34,7 @@
     </button>
   {/each}
 {:else}
-  <article class="prose prose-sm mt-2 px-4">
+  <article class="prose mt-2 px-4">
     <h3>Oops! We could not find a wallet.</h3>
     <p>
       Check out this <a href="/articles/web3/setup" class="text-primary" on:click={close}
