@@ -26,9 +26,11 @@ export type ProviderState =
 
 export interface EventEmitter {
   emit(eventName: string, args: never[]): EventEmitter;
-  on(eventName: string, listener: EventListener): EventEmitter;
+  on(
+    eventName: 'chainChanged' | 'accountsChanged' | 'connect' | 'disconnect',
+    listener: EventListener
+  ): EventEmitter;
   addListener(eventName: string, listener: EventListener): EventEmitter;
-  off(eventName: string, listener: EventListener): EventEmitter;
   removeListener(eventName: string, listener: EventListener): EventEmitter;
   removeAllListeners(eventName?: string): EventEmitter;
 }
