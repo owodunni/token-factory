@@ -93,3 +93,37 @@ export interface Ethereum extends EventEmitter {
 
   request(request: JSONRPCRequest): Promise<unknown>;
 }
+
+export type Provider = Pick<Ethereum, 'request'>;
+export type BlockHash = string;
+export type BlockNumber = string;
+export type BlockTag = 'latest' | 'earliest' | 'finalized' | 'safe' | 'pending';
+
+export type FeeHistory = {
+  baseFeePerGas: string[];
+  gasUsedRatio: number[];
+  oldestBlock: BlockHash;
+  reward: string[][];
+};
+export type Block = {
+  parentHash: string;
+  sha3Uncles: string;
+  miner: string;
+  stateRoot: string;
+  transactionsRoot: string;
+  receiptsRoot: string;
+  logsBloom: string;
+  difficulty: string;
+  number: string;
+  gasLimit: string;
+  gasUsed: string;
+  timestamp: string;
+  extraData: string;
+  mixHash: string;
+  nonce: string;
+  totalDifficulty: string;
+  size: string;
+  baseFeePerGas: string;
+  transactions: string[] | object[];
+  uncles: string[];
+};

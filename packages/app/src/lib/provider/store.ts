@@ -56,13 +56,13 @@ export const connect = async (): Promise<void> => {
   if (!window.ethereum) return;
   const ethereum = window.ethereum;
 
-  /** Set loading to disable web3Modal button while Provider dialogs might be showing */
-  providerState.set({ type: 'loading' });
-
   let connectedState = getProviderState();
   if (connectedState.type === 'connected') {
     return connected(ethereum, connectedState);
   }
+
+  /** Set loading to disable web3Modal button while Provider dialogs might be showing */
+  providerState.set({ type: 'loading' });
 
   await ethereum.request({ method: 'eth_requestAccounts', jsonrpc: '2.0', id: 1 });
   connectedState = getProviderState();
@@ -70,8 +70,20 @@ export const connect = async (): Promise<void> => {
   return disconnect();
 };
 
+const connectIfConnected = async () => {
+  if (!browser || !window.ethereum) return;
+  const ethereum = window.ethereum;
+
+  const connectedState = getProviderState();
+  if (connectedState.type === 'connected') {
+    return connected(ethereum, connectedState);
+  }
+};
+
 export const disconnect = (): void => {
   if (getState().type === 'disconnected') return;
   providerState.set({ type: 'disconnected' });
   currentProvider.set(null);
 };
+
+connectIfConnected();
