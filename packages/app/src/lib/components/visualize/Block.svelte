@@ -26,14 +26,10 @@
 
 {#if $currentProvider}
   {#await block then block}
-    <BlockInput
-      provider={$currentProvider}
-      initialBlock={Number(block)}
-      let:provider
-      let:block={b}
-      let:percentiles
-    >
-      <Fee {provider} block={b} {percentiles} />
+    <BlockInput provider={$currentProvider} initialBlock={Number(block)} let:provider let:block={b}>
+      <Fee {provider} block={b} />
     </BlockInput>
   {/await}
+{:else}
+  <p>...connect your wallet!</p>
 {/if}
