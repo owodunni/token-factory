@@ -1,35 +1,34 @@
-<script>
+<script lang="ts">
+  import '@carbon/styles/css/styles.css';
+  import '@carbon/charts/styles.css';
   import { onMount } from 'svelte';
+  import type { Data } from '../../visualization';
+  import type { BoxplotChartOptions, ScaleTypes } from '@carbon/charts/interfaces';
 
-  export let options;
+  export let data: Data[];
 
-  let ApexCharts;
-  let loaded = false;
+  let chart;
 
-  const chart = (node, options) => {
-    if (!loaded) return;
-
-    let myChart = new ApexCharts(node, options);
-    myChart.render();
-
-    return {
-      update(options) {
-        myChart.updateOptions(options);
+  const options: BoxplotChartOptions = {
+    title: 'Vertical box plot',
+    height: '400px',
+    resizable: true,
+    axes: {
+      left: {
+        mapsTo: 'value',
+        scaleType: 'log' as ScaleTypes
       },
-      destroy() {
-        myChart.destroy();
+      bottom: {
+        mapsTo: 'group',
+        scaleType: 'labels' as ScaleTypes
       }
-    };
+    }
   };
 
   onMount(async () => {
-    const module = await import('apexcharts');
-    ApexCharts = module.default;
-    window.ApexCharts = ApexCharts;
-    loaded = true;
+    const charts = await import('@carbon/charts-svelte');
+    chart = charts.BoxplotChart;
   });
 </script>
 
-{#if loaded}
-  <div use:chart={options} />
-{/if}
+<svelte:component this={chart} {data} {options} />
