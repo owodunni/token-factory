@@ -16,6 +16,7 @@
     "format:eslint": "eslint . --fix --max-warnings=0"
   },
   "devDependencies": {
+    "@carbon/charts-svelte": "^1.6.3",
     "@playwright/test": "1.25.0",
     "@sveltejs/adapter-cloudflare": "^1.0.0-next.40",
     "@sveltejs/kit": "next",
@@ -24,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
     "autoprefixer": "^10.4.13",
+    "d3": "^7.8.2",
     "daisyui": "^2.41.0",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.3.0",

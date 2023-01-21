@@ -97,6 +97,9 @@ export interface Ethereum extends EventEmitter {
 export type Provider = Pick<Ethereum, 'request'>;
 export type BlockHash = string;
 export type BlockNumber = string;
+export type TransactionHash = string;
+export type HexString = string;
+export type Address = string;
 export type BlockTag = 'latest' | 'earliest' | 'finalized' | 'safe' | 'pending';
 
 export type FeeHistory = {
@@ -105,7 +108,30 @@ export type FeeHistory = {
   oldestBlock: BlockHash;
   reward: string[][];
 };
-export type Block = {
+
+export type Transaction = {
+  accessList: { address: Address; storageKeys: HexString[] }[];
+  blockHash: BlockHash;
+  blockNumber: BlockNumber;
+  chainId: HexString;
+  from: Address;
+  gas: HexString;
+  gasPrice: HexString;
+  hash: TransactionHash;
+  input: HexString;
+  maxFeePerGas: HexString;
+  maxPriorityFeePerGas: HexString;
+  nonce: HexString;
+  r: HexString;
+  s: HexString;
+  to: HexString;
+  transactionIndex: HexString;
+  type: HexString;
+  v: HexString;
+  value: HexString;
+};
+
+type _Block = {
   parentHash: string;
   sha3Uncles: string;
   miner: string;
@@ -124,6 +150,10 @@ export type Block = {
   totalDifficulty: string;
   size: string;
   baseFeePerGas: string;
-  transactions: string[] | object[];
+  transactions: string[];
   uncles: string[];
 };
+
+export type BlockWithoutTransactions = _Block;
+export type BlockWithTransactions = _Block & { transactions: Transaction[] };
+export type Block = BlockWithoutTransactions | BlockWithTransactions;
