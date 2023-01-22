@@ -1,6 +1,4 @@
 <script lang="ts">
-  import '@carbon/styles/css/styles.css';
-  import '@carbon/charts/styles.css';
   import { onMount } from 'svelte';
   import type { Data } from '../../visualization';
   import type { BoxplotChartOptions } from '@carbon/charts/interfaces';
