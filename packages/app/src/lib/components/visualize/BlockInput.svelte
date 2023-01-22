@@ -1,8 +1,5 @@
 <script lang="ts">
-  import { type Ethereum } from '$lib/provider';
-
-  export let provider: Ethereum;
-  export let initialBlock: number;
+  import { blockNumber } from '../../visualization';
 </script>
 
 <div class="flex flex-row justify-between">
@@ -12,8 +9,7 @@
       type="number"
       placeholder="Block"
       class="input input-bordered  w-full max-w-xs"
-      bind:value={initialBlock}
+      bind:value={$blockNumber}
     />
   </div>
 </div>
-<slot {provider} block={initialBlock} />
