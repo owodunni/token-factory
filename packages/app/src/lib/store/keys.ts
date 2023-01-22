@@ -1,3 +1,4 @@
 export const keys = {
-  providerState: 'providerState'
+  providerState: 'providerState',
+  blocks: 'blocks'
 };

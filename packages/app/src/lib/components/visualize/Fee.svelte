@@ -1,25 +1,11 @@
 <script lang="ts">
-  import { Node, type Ethereum, type BlockWithTransactions } from '$lib/provider';
+  import { type BlockWithTransactions } from '$lib/provider';
   import Chart from './Chart.svelte';
   import type { Data } from '../../visualization';
-
-  export let provider: Ethereum;
-  export let block: number;
-
-  const range = (start, stop, step = 1) =>
-    Array(Math.ceil((stop - start) / step))
-      .fill(start)
-      .map((x, y) => x + y * step);
-
-  const toHex = (n: number) => `0x${n.toString(16)}`;
-
-  $: _block = (async () => {
-    return provider
-      ? Promise.all(
-          range(block - 5, block).map((nmb) => Node.getBlockByNumber(provider, toHex(nmb), true))
-        )
-      : null;
-  })();
+  import { blockStore } from '../../visualization';
+  import { derived } from 'svelte/store';
+  import { browser } from '$app/environment';
+  import type { BoxplotChartOptions, ScaleTypes } from '@carbon/charts/interfaces';
 
   function toGwei(nmb: string) {
     return Number(nmb) / 1000000000.0;
@@ -39,7 +25,7 @@
       } else {
         priorityFee = toGwei(tx.gasPrice) - blockBaseFee;
       }
-      if (priorityFee == 0) {
+      if (priorityFee < 0.01) {
         return [];
       }
       return [
@@ -52,18 +38,25 @@
     });
   }
 
-  function blocksData(blocks: BlockWithTransactions[]): Data[] {
-    return blocks.flatMap((block) => blockData(block));
-  }
+  const data = derived(blockStore, (blocks) => {
+    return browser ? blocks.flatMap((block) => blockData(block)) : [];
+  });
+
+  const options: BoxplotChartOptions = {
+    title: 'Block priority fee',
+    height: '400px',
+    resizable: true,
+    axes: {
+      left: {
+        mapsTo: 'value',
+        scaleType: 'log' as ScaleTypes
+      },
+      bottom: {
+        mapsTo: 'group',
+        scaleType: 'labels' as ScaleTypes
+      }
+    }
+  };
 </script>
 
-{#await _block}
-  <p>...loading</p>
-{:then block}
-  <p>Priority fee:</p>
-  <Chart data={blocksData(block)} />
-  <p>Total gas:</p>
-{:catch error}
-  <p>{error}</p>
-  <p>{JSON.stringify(error)}</p>
-{/await}
+<Chart data={$data} {options} />
