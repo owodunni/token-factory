@@ -59,4 +59,4 @@
   };
 </script>
 
-<Chart data={$data} {options} />
+<Chart />

@@ -1,29 +1,30 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { Data } from '../../visualization';
-  import type { BoxplotChartOptions } from '@carbon/charts/interfaces';
-  import { ChartTheme } from '@carbon/charts/interfaces';
+  import { onDestroy, onMount } from "svelte";
+  import type uPlot from "uplot"
 
-  export let data: Data[];
+  let plotContainer;
+  let plot: uPlot;
+  let options: uPlot.Options = {
+      width: 600,
+      height: 300,
+      scales: {x: {time: false}},
+      series: [{label: "x"}, {label: "y", stroke: "red"}],
+    };
+  let data: uPlot.AlignedData = [[1, 2, 3, 4, 5], [1, 3, 2, 5, 4]];
 
-  let chart;
-
-  export let options: BoxplotChartOptions;
-
-  const themeSwitcher = () => {
-    const isDarkMode = () =>
-      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = isDarkMode() ? ChartTheme.G100 : ChartTheme.WHITE;
-    if (options.theme === theme) return;
-    options = { ...options, theme };
-  };
+  function redraw(uplot) {
+    plot = new uplot(options, data, plotContainer) as uPlot;
+  }
 
   onMount(async () => {
-    const charts = await import('@carbon/charts-svelte');
-    chart = charts.BoxplotChart;
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', themeSwitcher);
-    themeSwitcher();
+    const uPlotModule = await import('uplot');
+    const uPlot = uPlotModule.default;
+    redraw(uPlot);
+  })
+
+  onDestroy(() => {
+    plot?.destroy();
   });
 </script>
 
-<svelte:component this={chart} {data} {options} />
+<div bind:this={plotContainer}></div>
