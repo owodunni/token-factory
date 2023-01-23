@@ -1,12 +1,7 @@
-import { type BlockWithTransactions, currentProvider, type FeeHistory, Node } from "../provider";
-import blocks from "./blocks.json";
-import fee from "./fee.json";
-import { derived, writable } from "svelte/store";
-
-export type Data = {
-  group: string;
-  value: number;
-} & ({ key: string; } | { date: string; });
+import { type BlockWithTransactions, currentProvider, type FeeHistory, Node } from '../provider';
+import blocks from './blocks.json';
+import fee from './fee.json';
+import { derived, writable } from 'svelte/store';
 
 const DEFAULT_BLOCK = 16456224;
 
@@ -35,7 +30,6 @@ export const blockStore = derived(
   },
   blocks as unknown as BlockWithTransactions[]
 );
-
 
 export const feeStore = derived(
   [blockNumber, currentProvider],

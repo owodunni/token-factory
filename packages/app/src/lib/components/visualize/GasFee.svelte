@@ -1,86 +1,77 @@
 <script lang="ts">
-  import Chart from "./Chart.svelte";
-  import { blockNumber, type Data, feeStore } from "../../visualization";
-  import { derived } from "svelte/store";
-  import type { LineChartOptions, ScaleTypes } from "@carbon/charts/interfaces";
-  import type { FeeHistory } from "../../provider";
-
+  import Chart from './Chart.svelte';
+  import { blockStore, feeStore } from '../../visualization';
+  import { derived } from 'svelte/store';
+  import type { Block, FeeHistory } from '../../provider';
+  import type uPlot from 'uplot';
+  import { browser } from '$app/environment';
 
   function toGwei(nmb: string) {
     return Number(nmb) / 1000000000.0;
   }
 
-  const resize = (data: Data[], maxSize = 100): Data[] => {
-    const maxVal = 100;
+  const feeData = (fee: FeeHistory, blocks: Block[]): uPlot.AlignedData => {
+    const prio25: number[] = fee.reward.map((r) => toGwei(r[0])).reverse();
+    const prio50: number[] = fee.reward.map((r) => toGwei(r[1])).reverse();
+    const prio75: number[] = fee.reward.map((r) => toGwei(r[2])).reverse();
+    const base: number[] = fee.baseFeePerGas.map((b) => toGwei(b)).reverse();
+    const x: number[] = fee.reward.map((_, i) => Number(blocks[0].number) - i).reverse();
 
-    const delta = Math.floor( data.length / maxVal );
-
-    const data2: Data[]= [];
-
-    for (let i = 0; i < data.length; i=i+delta) {
-      data2.push(data[i]);
-    }
-    return data2
-  }
-
-  const feeData = (fee: FeeHistory, lastBlock: number): Data[] => {
-    const prio50: Data[] = fee.reward.map((r, i) => {
-      return {
-        group: "priority 50",
-        date: (fee.reward.length - i).toString(),
-        value: toGwei(r[1])
-      };
-    });
-
-    const prio25: Data[] = fee.reward.map((r, i) => {
-      return {
-        group: "priority 25",
-        date: (fee.reward.length - i).toString(),
-        value: toGwei(r[0])
-      };
-    });
-
-    const prio75: Data[] = fee.reward.map((r, i) => {
-      return {
-        group: "priority 75",
-        date: (fee.reward.length - i).toString(),
-        value: toGwei(r[2])
-      };
-    });
-
-    const base: Data[] = fee.baseFeePerGas.map((b, i) => {
-      return {
-        group: "base",
-        date: (fee.baseFeePerGas.length - i).toString(),
-        value: toGwei(b)
-      };
-    });
-
-    return [...resize(prio25), ...resize(prio50), ...resize(prio75), ...resize(base),];
-
+    return [x, prio25, prio50, prio75, base];
   };
 
-  const data = derived([feeStore, blockNumber], (input) => feeData(...input));
+  const data = derived([feeStore, blockStore], (input) => feeData(...input));
 
-  let options: LineChartOptions = {
-    title: "Gas fee",
-    height: "400px",
-    curve: "curveNormal",
-    resizable: true,
-    points: {
-      radius: 0
-    },
-    axes: {
-      left: {
-        mapsTo: "value",
-        scaleType: "linear" as ScaleTypes
+  let options: uPlot.Options = {
+    title: 'Gas fee',
+    height: 400,
+    width: 400,
+    series: [
+      {
+        label: 'block'
       },
-      bottom: {
-        mapsTo: "date",
-        scaleType: "linear" as ScaleTypes
+      {
+        label: 'p25',
+        scale: '%',
+        value: (u, v) => (v == null ? '-' : v.toFixed(2) + ' Gwei'),
+        stroke: 'red',
+        width: 2 / (browser ? devicePixelRatio : 1)
+      },
+      {
+        label: 'p50',
+        scale: '%',
+        value: (u, v) => (v == null ? '-' : v.toFixed(2) + ' Gwei'),
+        stroke: 'blue',
+        width: 2 / (browser ? devicePixelRatio : 1)
+      },
+      {
+        label: 'p75',
+        scale: '%',
+        value: (u, v) => (v == null ? '-' : v.toFixed(2) + ' Gwei'),
+        stroke: 'brown',
+        width: 2 / (browser ? devicePixelRatio : 1)
+      },
+      {
+        label: 'base',
+        scale: '%',
+        value: (u, v) => (v == null ? '-' : v.toFixed(2) + ' Gwei'),
+        stroke: 'orange',
+        width: 2 / (browser ? devicePixelRatio : 1)
+      }
+    ],
+    scales: {
+      x: {
+        time: false
       }
     },
+    axes: [
+      {},
+      {
+        scale: '%',
+        values: (u, vals) => vals.map((v) => +v.toFixed(2) + ' Gw')
+      }
+    ]
   };
 </script>
 
-<Chart />
+<Chart data={$data} {options} />
