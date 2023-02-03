@@ -1,18 +1,16 @@
 <script lang="ts">
   import { blockStore } from '../../visualization';
   import { derived } from 'svelte/store';
-  import { browser } from '$app/environment';
-  import Chart from '$lib/components/visualize/Chart.svelte';
-  import uPlot from 'uplot';
+  import Plotly from '$lib/components/visualize/Plotly.svelte';
+  import type { Layout, Data } from 'plotly.js';
 
   function toGwei(nmb: string) {
     return Number(nmb) / 1000000000.0;
   }
 
-  const data = derived(blockStore, (blocks) => {
-    const x: number[] = [];
-    const fee: number[] = [];
-    blocks.forEach((_block) => {
+  const data = derived(blockStore, (blocks): Data[] => {
+    return blocks.map((_block) => {
+      const fee: number[] = [];
       const blockBaseFee = toGwei(_block.baseFeePerGas);
 
       _block.transactions.forEach((tx) => {
@@ -28,43 +26,29 @@
         if (priorityFee < 0.01) {
           return;
         } else {
-          x.push(Number(_block.number));
           fee.push(priorityFee);
         }
       });
+      return {
+        y: fee,
+        type: 'box',
+        boxpoints: 'suspectedoutliers',
+        name: `Block ${Number(_block.number)}`
+      };
     });
-    return [x, fee];
   });
 
-  let options: uPlot.Options = {
-    title: 'Priority fee',
-    height: 400,
-    width: 400,
-    series: [
-      {
-        label: 'block'
-      },
-      {
-        label: 'priority fee',
-        scale: '%',
-        value: (u, v) => (v == null ? '-' : v.toFixed(2) + ' Gwei'),
-        stroke: 'red',
-        width: 2 / (browser ? devicePixelRatio : 1)
-      }
-    ],
-    scales: {
-      x: {
-        time: false
-      }
+  const layout: Partial<Layout> = {
+    title: 'Priority Fee',
+    xaxis: {
+      title: 'Block Number'
     },
-    axes: [
-      {},
-      {
-        scale: '%',
-        values: (u, vals) => vals.map((v) => +v.toFixed(2) + ' Gw')
-      }
-    ]
+    yaxis: {
+      title: 'Priority Fee (Gwei)',
+      type: 'log',
+      autorange: true
+    }
   };
 </script>
 
-<Chart data={$data} {options} />
+<Plotly data={$data} {layout} />
