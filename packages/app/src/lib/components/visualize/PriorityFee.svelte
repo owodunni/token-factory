@@ -10,7 +10,6 @@
 
   const data = derived(blockStore, (blocks): Data[] => {
     return blocks.map((_block) => {
-      const x: number[] = [];
       const fee: number[] = [];
       const blockBaseFee = toGwei(_block.baseFeePerGas);
 
@@ -27,16 +26,14 @@
         if (priorityFee < 0.01) {
           return;
         } else {
-          x.push(Number(_block.number));
           fee.push(priorityFee);
         }
       });
       return {
-        x,
         y: fee,
-        type: 'scatter',
-        mode: 'markers',
-        text: `Block ${Number(_block.number)}`
+        type: 'box',
+        boxpoints: 'suspectedoutliers',
+        name: `Block ${Number(_block.number)}`
       };
     });
   });
@@ -48,7 +45,8 @@
     },
     yaxis: {
       title: 'Priority Fee (Gwei)',
-      type: 'log'
+      type: 'log',
+      autorange: true
     }
   };
 </script>
