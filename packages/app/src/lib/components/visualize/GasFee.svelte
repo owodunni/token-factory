@@ -42,6 +42,17 @@
       title: 'Gwei',
       type: 'linear',
       autorange: true
+    },
+    legend: {
+      yanchor: 'top',
+      y: 0.99,
+      xanchor: 'left',
+      x: 0.01
+    },
+    margin: {
+      r: 0,
+      l: 40,
+      t: 40
     }
   };
 </script>
