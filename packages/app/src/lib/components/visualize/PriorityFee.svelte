@@ -47,6 +47,12 @@
       title: 'Priority Fee (Gwei)',
       type: 'log',
       autorange: true
+    },
+    showlegend: false,
+    margin: {
+      r: 0,
+      l: 40,
+      t: 40
     }
   };
 </script>
