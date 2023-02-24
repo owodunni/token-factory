@@ -2,6 +2,7 @@ import { type BlockWithTransactions, currentProvider, type FeeHistory, Node } fr
 import blocks from './blocks.json';
 import fee from './fee.json';
 import { derived, writable } from 'svelte/store';
+export { toGwei, feeData } from './transformations';
 
 const DEFAULT_BLOCK = 16456224;
 
@@ -12,7 +13,7 @@ const range = (start: number, stop: number, step = 1) =>
     .fill(start)
     .map((x, y) => x + y * step);
 
-const toHex = (n: number) => `0x${n.toString(16)}`;
+export const toHex = (n: number) => `0x${n.toString(16)}`;
 
 export const blockStore = derived(
   [blockNumber, currentProvider],
