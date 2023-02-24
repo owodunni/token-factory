@@ -1,5 +1,7 @@
 {
+  "name": "@token-factory/seeker",
   "type": "module",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",

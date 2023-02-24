@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import Web3 from "web3";
-import PocketBase from "pocketbase";
+import PocketBase, { ListResult } from "pocketbase";
 import type { Transaction, Tx, TxRecord } from "./types.js";
 
 dotenv.config();
@@ -18,6 +18,8 @@ await pb.collection("users").authWithPassword(process.env.PB_USER, process.env.P
 async function getPendingTxs() {
   return pb.collection("txs").getFullList<TxRecord>({filter: 'block = null'})
 }
+
+export type TxListResult = ListResult<TxRecord>
 
 function monitorPendingTxs(maxPendingTxs = 10000) {
   setInterval(async () => {
