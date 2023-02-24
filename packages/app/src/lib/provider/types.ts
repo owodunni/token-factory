@@ -105,7 +105,7 @@ export type BlockTag = 'latest' | 'earliest' | 'finalized' | 'safe' | 'pending';
 export type FeeHistory = {
   baseFeePerGas: string[];
   gasUsedRatio: number[];
-  oldestBlock: BlockHash;
+  oldestBlock: BlockNumber;
   reward: string[][];
 };
 
