@@ -5,7 +5,7 @@ let id = 1;
 export const feeHistory = async (
   provider: Provider,
   blockCount: number,
-  newestBlock: BlockHash | BlockTag,
+  newestBlock: BlockNumber | BlockTag,
   rewardPercentiles: number[]
 ): Promise<FeeHistory> =>
   (await provider.request({
