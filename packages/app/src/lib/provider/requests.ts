@@ -1,4 +1,13 @@
-import type { BlockHash, BlockTag, Provider, FeeHistory, Block, BlockNumber } from './types';
+import type {
+  BlockHash,
+  BlockTag,
+  Provider,
+  FeeHistory,
+  Block,
+  BlockNumber,
+  Transaction,
+  Receipt
+} from './types';
 
 let id = 1;
 
@@ -46,3 +55,22 @@ export const getBlockByNumber = async (
     method: 'eth_getBlockByNumber',
     params: [number, includeTransactions]
   })) as Block;
+
+export const getTransactionByHash = async (
+  provider: Provider,
+  hash: string
+): Promise<Transaction> =>
+  (await provider.request({
+    id: id++,
+    jsonrpc: '2.0',
+    method: 'eth_getTransactionByHash',
+    params: [hash]
+  })) as Transaction;
+
+export const getTransactionReceipt = async (provider: Provider, hash: string): Promise<Receipt> =>
+  (await provider.request({
+    id: id++,
+    jsonrpc: '2.0',
+    method: 'eth_getTransactionReceipt',
+    params: [hash]
+  })) as Receipt;

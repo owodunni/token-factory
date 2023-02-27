@@ -2,8 +2,9 @@ import type { Record } from "pocketbase"
 
 export type Tx = {
   hash: string,
-  firstBlock?: string,
+  firstBlock: string,
   block?: string,
+  distance?: string,
   gas?: number,
   gasPrice?: string,
   maxFeePerGas?: number,
