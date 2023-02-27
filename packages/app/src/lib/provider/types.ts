@@ -131,6 +131,33 @@ export type Transaction = {
   value: HexString;
 };
 
+export type Receipt = {
+  blockHash: BlockHash;
+  blockNumber: BlockNumber;
+  contractAddress: string | null;
+  cumulativeGasUsed: HexString;
+  effectiveGasPrice: HexString;
+  from: string;
+  gasUsed: HexString;
+  logs: {
+    address: string;
+    blockHash: BlockHash;
+    blockNumber: BlockNumber;
+    data: HexString;
+    logIndex: HexString;
+    removed: boolean;
+    topics: HexString[];
+    transactionHash: HexString;
+    transactionIndex: HexString;
+  }[];
+  logsBloom: string;
+  status: '0x1' | '0x0';
+  to: string;
+  transactionHash: HexString;
+  transactionIndex: HexString;
+  type: '0x0' | '0x1' | '0x2';
+};
+
 type _Block = {
   parentHash: string;
   sha3Uncles: string;

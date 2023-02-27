@@ -1,5 +1,4 @@
-import type { Block, FeeHistory } from '../provider';
-import type { Data } from 'plotly.js';
+import type { FeeHistory } from '../provider';
 
 export function toGwei(nmb: string) {
   return Number(nmb) / 1000000000.0;
@@ -7,15 +6,14 @@ export function toGwei(nmb: string) {
 
 export const feeData = (
   fee: FeeHistory,
-  block: Block,
   { addBaseGas }: { addBaseGas: boolean } = { addBaseGas: false }
-): Data[] => {
+) => {
   const oldestBlock = Number(fee.oldestBlock);
-  const base: number[] = [];
-  const prio25: number[] = [];
-  const prio50: number[] = [];
-  const prio75: number[] = [];
-  const x = [];
+  const base = Array<number>(fee.reward.length);
+  const prio10 = Array<number>(fee.reward.length);
+  const prio25 = Array<number>(fee.reward.length);
+  const prio50 = Array<number>(fee.reward.length);
+  const x = Array<number>(fee.reward.length);
 
   let i = 0;
 
@@ -23,15 +21,15 @@ export const feeData = (
 
   for (; i < fee.reward.length; i++) {
     const reward = fee.reward[i];
-    base.push(toGwei(fee.baseFeePerGas[i]));
+    base[i] = toGwei(fee.baseFeePerGas[i]);
 
-    prio25.push(toFee(reward[0]));
-    prio50.push(toFee(reward[1]));
-    prio75.push(toFee(reward[2]));
-    x.push(oldestBlock + i);
+    prio10[i] = toFee(reward[0]);
+    prio25[i] = toFee(reward[1]);
+    prio50[i] = toFee(reward[2]);
+    x[i] = oldestBlock + i;
   }
 
-  const baseData: Partial<Data> = {
+  const baseData = {
     x,
     type: 'scatter',
     line: { width: 0.8 },
@@ -41,11 +39,11 @@ export const feeData = (
   return [
     {
       ...baseData,
-      y: prio75,
-      name: 'p75'
+      y: prio50,
+      name: 'p50'
     },
-    { ...baseData, y: prio50, type: 'scatter', name: 'p50' },
-    { ...baseData, y: prio25, name: 'p25' },
+    { ...baseData, y: prio25, type: 'scatter', name: 'p25' },
+    { ...baseData, y: prio10, name: 'p10' },
     { ...baseData, y: base, name: 'base' }
-  ];
+  ] as const;
 };
