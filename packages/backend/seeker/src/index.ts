@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import Web3 from "web3";
 import PocketBase, { ListResult } from "pocketbase";
-import type { Transaction, Tx, TxRecord } from "./types.js";
+import type { Transaction, TransactionReceipt, Tx, TxRecord } from "./types.js";
 
 dotenv.config();
 
@@ -90,7 +90,7 @@ async function updatePendingTxs() {
     console.log("Updating pending transactions", i, i + chunkSize);
     await Promise.all(pendingTxs.slice(i, i + chunkSize).map(async (tx) => {
       try {
-        const _tx = await web3.eth.getTransaction(tx.hash);
+        const _tx = (await web3.eth.getTransactionReceipt(tx.hash)) as TransactionReceipt;
         if (!(_tx && _tx.blockNumber)) return;
         await pb.collection("txs").update(tx.id,
           {

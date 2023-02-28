@@ -17,7 +17,7 @@
 
   const { items } = data;
 
-  /** Hardcoded used for now, to refersh the data, change the number
+  /** Hardcoded used for now, to refresh the data, change the number
    * use {@link feeHistory} to get the latest data
    */
   const fees: FeeHistory = {

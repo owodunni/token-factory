@@ -9,7 +9,8 @@ export async function load(load: PageLoadEvent) {
 
   if (category === 'ethereum' && fileName === 'eip-1559') {
     const res = await load.fetch(
-      'https://jardoole.xyz/api/collections/txs/records?sort=-firstBlock&filter=(block < 16682051)&perPage=40'
+      //?filter=(firstBlock>'16682030' && block < '16682051' && distance > 3)"
+      'https://jardoole.xyz/api/collections/txs/records?filter=%28firstBlock>16682030%26%26distance>3%26%26block<16682051%29'
     );
     data = await res.json();
   }
