@@ -71,3 +71,13 @@ export interface TransactionReceipt {
     [eventName: string]: EventLog;
   };
 }
+
+export interface FeeHistory {
+  baseFeePerGas: string[];
+  gasUsedRatio: number[];
+  oldestBlock: number;
+  reward: string[][];
+}
+
+export type Probability = {cdf: number[], samples: number, rawCdf: number[], percentiles: number[]}
+export type ProbabilityDocument = Record & {data: Probability }
