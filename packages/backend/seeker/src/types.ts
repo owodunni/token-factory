@@ -1,4 +1,5 @@
 import type { Record } from "pocketbase"
+import { ListResult } from "pocketbase";
 
 export type Tx = {
   hash: string,
@@ -12,6 +13,7 @@ export type Tx = {
 };
 
 export type TxRecord = Record & Tx;
+export type TxListResult = ListResult<TxRecord>
 
 export interface Transaction {
   hash: string;

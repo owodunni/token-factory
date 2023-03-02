@@ -1,9 +1,6 @@
-import type { TxRecord } from "./types.js";
 import { cleanPendingTxs, fetchPendingTxs, fixMissingDistance, updatePendingTxs } from "./transactions.js";
-import { ListResult } from "pocketbase";
 import { calculateProbability } from "./probability.js";
-
-export type TxListResult = ListResult<TxRecord>
+export * from "./types.js";
 
 /**
  * Help text displayed when running the script without arguments or with invalid arguments
